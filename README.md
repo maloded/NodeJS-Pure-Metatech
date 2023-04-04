@@ -1,4 +1,4 @@
-# NodeJS-Pure-Metatech
+# Pure NodeJS application runtime built on the foundation of Metatech University
 
 ## License
 

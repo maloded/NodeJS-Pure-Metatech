@@ -8,10 +8,14 @@
     "list": "eslint . && prettier -c \"**/*.js\" \"**/*.ts\"",
     "fmt": "prettier --write \"**/*.js\" \"**/*.ts\""
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maloded/NodeJS-Pure-Metatech.git"
+  },
   "engines": {
     "node": "14 || 16 || 18"
   },
-  "author": "Maloded",
+  "author": "Malodied",
   "license": "MIT",
   "dependencies": {
     "pg": "^8.10.0",
