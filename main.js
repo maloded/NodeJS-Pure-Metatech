@@ -1,11 +1,11 @@
 'use strict';
 
 const path = require('node:path');
-const staticServer = require('./lib/static.js');
 const logger = require('./lib/logger.js');
 const common = require('./lib/common.js');
-const { loadDir } = require('./lib/load.js');
-const ws = require('./lib/ws.js');
+const staticServer = require('./src/static.js');
+const { loadDir } = require('./src/load.js');
+const ws = require('./src/ws.js');
 
 const appPath = path.join(process.cwd(), '../NodeJS-Application-Metatech');
 const apiPath = path.join(appPath, './api');
