@@ -14,8 +14,8 @@ const load = async (filePath, sandbox) => {
     const code = `'use strict';\n${src}`;
     const script = new vm.Script(code);
     context = vm.createContext(Object.freeze({ ...sandbox }));
-    const exported = script.runInContext(context, OPTIONS);
-    return exported;
+    const exp = script.runInContext(context, OPTIONS);
+    return typeof exp === 'object' ? exp : { method: exp };
 };
 
 const loadDir = async (dir, sandbox) => {
