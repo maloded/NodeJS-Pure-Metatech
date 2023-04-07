@@ -16,7 +16,7 @@ const staticPath = path.join(appPath, './static');
     const sandbox = {
         console: Object.freeze(logger),
         common: Object.freeze(common),
-    }
+    };
 
     const config = await loadDir(configPath, sandbox);
     const db = require('./lib/db.js')(config.db);

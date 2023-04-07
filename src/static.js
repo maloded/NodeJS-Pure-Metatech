@@ -38,7 +38,8 @@ module.exports = (root, port, console) => {
                 res.status = 404;
                 res.end('"File is not found"');
             }
-        }).listen(port);
+        })
+        .listen(port);
 
     console.log(`Static on port ${port}`);
 
