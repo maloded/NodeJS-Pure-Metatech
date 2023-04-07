@@ -11,8 +11,8 @@ const OPTIONS = {
 
 const load = async (filePath, sandbox) => {
     const src = await fsp.readFile(filePath, 'utf-8');
-    const code = `'use strict';\n${src}`;
-    const script = new vm.Script(code);
+    const code = `'use strict';\n{\n${src}\n}`;
+    const script = new vm.Script(code, { ...OPTIONS, lineOffset: -2 });
     context = vm.createContext(Object.freeze({ ...sandbox }));
     const exp = script.runInContext(context, OPTIONS);
     return typeof exp === 'object' ? exp : { method: exp };
