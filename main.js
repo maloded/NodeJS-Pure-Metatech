@@ -3,14 +3,12 @@
 const path = require('node:path');
 const logger = require('./lib/logger.js');
 const common = require('./lib/common.js');
-const staticServer = require('./src/static.js');
 const { loadDir } = require('./src/load.js');
-const ws = require('./src/ws.js');
+const { createServer } = require('./src/server.js');
 
 const appPath = path.join(process.cwd(), '../NodeJS-Application-Metatech');
 const apiPath = path.join(appPath, './api');
 const configPath = path.join(appPath, './config');
-const staticPath = path.join(appPath, './static');
 
 (async () => {
     const sandbox = {
@@ -26,7 +24,8 @@ const staticPath = path.join(appPath, './static');
 
     const routing = loadDir(apiPath, sandbox);
 
+    const server = createServer(appPath, routing, config, logger);
     const [port] = config.server.ports;
-    const server = staticServer(staticPath, port, logger);
-    ws(routing, server, logger);
+    server.listen(port);
+    console.log(`API on port ${server.address().port}`);
 })();
