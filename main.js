@@ -22,7 +22,7 @@ const configPath = path.join(appPath, './config');
     sandbox.api = Object.freeze({});
     sandbox.db = Object.freeze(db);
 
-    const routing = loadDir(apiPath, sandbox);
+    const routing = loadDir(apiPath, sandbox, true);
 
     const server = createServer(appPath, routing, logger);
     const [port] = config.server.ports;
