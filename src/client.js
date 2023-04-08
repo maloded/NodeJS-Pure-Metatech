@@ -25,15 +25,17 @@ class Client extends EventEmitter {
     #console;
     #transport;
     #routing;
+    #eventId;
 
     constructor(console, transport, routing) {
         super();
         this.#console = console;
         this.#transport = transport;
         this.#routing = routing;
+        this.#eventId = 0;
         this.ip = transport.ip;
         this.session = null;
-        this.eventId = 0;
+        
     }
 
     get token() {
@@ -46,7 +48,7 @@ class Client extends EventEmitter {
             super.emit(name, data);
             return;
         }
-        this.send({ event: --this.eventId, [name]: data });
+        this.send({ event: --this.#eventId, [name]: data });
     }
 
     initializeSession(token, data = {}) {
@@ -105,7 +107,7 @@ class Client extends EventEmitter {
 
     async rpc(callId, interfaceName, methodName, args) {
         const [iname, ver = '*'] = interfaceName.split('.');
-        const proc = this.routing.getMethod(iname, ver, methodName);
+        const proc = this.#routing.getMethod(iname, ver, methodName);
         if (!proc) {
             this.error(404, { callId });
             return;
