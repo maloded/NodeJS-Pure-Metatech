@@ -35,7 +35,6 @@ class Client extends EventEmitter {
         this.#eventId = 0;
         this.ip = transport.ip;
         this.session = null;
-        
     }
 
     get token() {
