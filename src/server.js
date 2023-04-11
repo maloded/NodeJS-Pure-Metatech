@@ -42,11 +42,6 @@ class Client extends EventEmitter {
         this.session = null;
     }
 
-    get token() {
-        if (this.session === null) return '';
-        return this.session.token;
-    }
-
     error(code, options) {
         this.#transport.error(code, options);
     }
@@ -192,7 +187,6 @@ class Server {
             })
             .catch((error) => {
                 client.error(error.code, { id, error });
-                return;
             });
     }
 }
