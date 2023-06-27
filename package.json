@@ -13,7 +13,7 @@
     "url": "git+https://github.com/maloded/NodeJS-Pure-Metatech.git"
   },
   "engines": {
-    "node": "16 || 18 || 19"
+    "node": "16 || 18 || 19 || 20"
   },
   "author": "Malodied",
   "license": "MIT",
