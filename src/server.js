@@ -163,7 +163,7 @@ class Server {
         }
         /* TODO: resumeCookieSession(); */
         const [unit, method] = packet.method.split('/');
-        const proc = this.routing[unit][method];
+        const proc = this.routing.get(`${unit}.${method}`)
         if (!proc) {
             client.error(404, { id });
             return;
@@ -186,7 +186,8 @@ class Server {
                 client.send({ type: 'callback', id, result });
             })
             .catch((error) => {
-                client.error(error.code, { id, error });            });
+                client.error(error.code, { id, error });
+            });
     }
 }
 

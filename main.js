@@ -13,7 +13,8 @@ const sandbox = { console, common, api, ab: null };
 
 (async () => {
     const configPath = path.join(appPath, './config');
-    const config = await loadDir(configPath, sandbox);
+    const configData = await loadDir(configPath, sandbox);
+    const config = Object.fromEntries(configData);
 
     const db = require('./lib/db.js')(config.db);
     sandbox.db = Object.freeze(db);
