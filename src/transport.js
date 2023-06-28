@@ -29,7 +29,7 @@ class Transport {
     }
 
     error(code = 500, { id, error = null, httpCode = null } = {}) {
-        const { console } = this.server
+        const { console } = this.server;
         const { url, method } = this.req;
         if (!httpCode) httpCode = error?.httpCode || code;
         const status = http.STATUS_CODES[httpCode];
