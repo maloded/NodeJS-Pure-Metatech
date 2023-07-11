@@ -3,8 +3,12 @@
   "trailingComma": "all",
   "overrides": [
     {
-      "files": ["**/.*rc"],
-      "options": { "parser": "json" }
+      "files": [
+        "**/.*rc"
+      ],
+      "options": {
+        "parser": "json"
+      }
     }
   ]
 }

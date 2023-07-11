@@ -1,11 +1,24 @@
+declare module 'pg' {
+  export * from 'pg';
+}
+
 type QueryResult = Promise<object[]>;
 
-function deleteRecord(id: number): QueryResult;
-
-declare namespace db {
-    export function query(sql: string, args: Array<string>): QueryResult;
-    export function read(id: number, fields: Array<string>): QueryResult;
-    export function create(record: object): QueryResult;
-    export function update(id: number, record: object): QueryResult;
-    export { deleteRecord as delete };
+declare interface CrudMethods {
+  query(sql: string, args?: any[]): QueryResult;
+  read(id: string | null, fields?: string[]): QueryResult;
+  create(record: object): QueryResult;
+  update(id: string, record: object): QueryResult;
+  delete(id: string): QueryResult;
 }
+
+declare function crud(pool: any): (table: string) => CrudMethods;
+
+declare const pg: any;
+
+declare const exports: {
+  crud: typeof crud;
+  pg: typeof pg;
+};
+
+export = exports;
