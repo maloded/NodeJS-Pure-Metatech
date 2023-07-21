@@ -18,6 +18,8 @@ const sandbox = vm.createContext({ console, common });
 
   const configPath = path.join(appPath, './config');
   const config = await loadDir(configPath, sandbox);
+  config.database.ssl.cert = await fsp.readFile(path.resolve(__dirname, '../certificate.crt'));
+  config.database.ssl.key = await fsp.readFile(path.resolve(__dirname, '../private.key'));
 
   const libPath = path.join(appPath, './lib');
   const lib = await loadDir(libPath, sandbox);
