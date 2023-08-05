@@ -105,7 +105,7 @@ class Server {
   constructor(application) {
     this.application = application;
     const { console, routing, config } = application;
-    const staticPath = path.join(application.path, './static');
+    const staticPath = path.join(application.path, './static/CelestialWingsUI/build');
     this.staticHandler = serveStatic(staticPath);
     this.routing = routing;
     this.console = console;
