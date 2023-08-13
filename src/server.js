@@ -96,8 +96,15 @@ const serveStatic = (staticPath) => async (req, res) => {
     res.writeHead(200, { ...HEADERS, 'Content-Type': mimeType });
     res.end(data);
   } catch (err) {
-    res.statusCode = 404;
-    res.end('"File is not found"');
+    // It need for SPA
+    try {
+      const data = await fsp.readFile(path.join(staticPath, '/index.html'));
+      res.writeHead(200, { ...HEADERS, 'Content-Type':MIME_TYPES.html });
+      res.end(data);
+    } catch (err) {
+      res.statusCode = 404;
+      res.end('"File is not found"');
+    }
   }
 };
 
